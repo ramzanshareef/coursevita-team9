@@ -45,13 +45,13 @@ const Navbar = async ({
             <Image
               className="h-8 w-auto rounded-full max-md:w-8 max-md:h-auto"
               src="/logo.jpeg"
-              alt="Tech Talk"
+              alt="Course Vita Logo"
               height={32}
               width={32}
               priority={false}
             />
             <span className="text-lg font-medium leading-6 hover:text-gray-600 max-md:hidden">
-              Tech Talk
+              Course Vita
             </span>
           </Link>
           <div className="w-1/2 max-md:hidden">

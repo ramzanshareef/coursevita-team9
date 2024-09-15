@@ -1,6 +1,6 @@
-# 📢 TechTalk
+# 📢 Course Vita
 
-Welcome to TechTalk, a social media platform designed for developers to share their technical knowledge, collaborate in communities, and discover trending things...
+Welcome to Course Vita, a social media platform designed for developers to share their technical knowledge, collaborate in communities, and discover trending things...
 
 ## 🚀 Features
 
@@ -28,10 +28,10 @@ Welcome to TechTalk, a social media platform designed for developers to share th
 
 ## 📝 Usage
 
-To run TechTalk locally, follow these steps:
+To run Course Vita locally, follow these steps:
 
-1. **Clone the repository**: `git clone https://github.com/ramzanshareef/tech-talk.git`
-2. **Navigate to the directory**: `cd tech-talk`
+1. **Clone the repository**: `git clone https://github.com/ramzanshareef/coursevita-team9`
+2. **Navigate to the directory**: `cd coursevita-team9`
 3. **Install dependencies**: `npm install`
 4. **Set up environment variables** as follows:
      ```env
@@ -54,6 +54,7 @@ To run TechTalk locally, follow these steps:
 ## 👨🏻‍💻 Other Contributors
 
 - [B-Sujith-Kumar](https://github.com/B-Sujith-Kumar)
+- [Raviteja-Salendra] (https://github.com/Raviteja-Salendra)
 
 ## 🤝 Contributing
 

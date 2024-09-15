@@ -15,7 +15,7 @@ config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Tech Talk",
+    title: "Course Vita",
     description: "A social media platform for developers to share their thoughts and ideas.",
 };
 
