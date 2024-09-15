@@ -6,6 +6,13 @@ import { IUser } from "@/lib/database/models/user.model";
 import { IPostPopulated } from "@/types";
 import Image from "next/image";
 import React from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const AddComment = ({ post, currentUser }: { post: IPostPopulated, currentUser: IUser }) => {
     const [content, setContent] = React.useState("");

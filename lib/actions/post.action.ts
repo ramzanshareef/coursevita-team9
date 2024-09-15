@@ -531,6 +531,7 @@ export async function getPostById(postID: mongoose.Schema.Types.ObjectId) {
 export const addComment = async (
     postID: mongoose.Schema.Types.ObjectId,
     content: string,
+    category: string,
     userID: string
 ) => {
     try {
@@ -545,6 +546,7 @@ export const addComment = async (
             author: userID,
             post: postID,
             content: content,
+            type: category,
         });
         let newComment = await Comment.findOne({ _id: comment._id }).populate(
             "author"
