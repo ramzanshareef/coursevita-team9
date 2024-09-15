@@ -361,7 +361,62 @@ export const getCommunityModerators = async (communityId: string) => {
   }
 };
 
-
+export const addModerator = async (communityId: string, username: string) => {
+    try {
+      await connectToDatabase();
+      const community: ICommunity | null = await Community.findById(communityId);
+      if (!community) {
+        return JSON.parse(
+          JSON.stringify({ error: "Community not found", status: 500 })
+        );
+      }
+      const user: IUser | null = await User.findOne({ username });
+      if (!user) {
+        return JSON.parse(
+          JSON.stringify({
+            error:
+              "Sorry, the username does not exists. Please try another username.",
+            status: 500,
+          })
+        );
+      }
+      if (community.moderators.includes(user._id!)) {
+        return JSON.parse(
+          JSON.stringify({ error: "User is already a moderator", status: 500 })
+        );
+      }
+      community.moderatorInvites?.push(user._id!);
+      user.moderatorInvites?.push(community._id!);
+      await community.save();
+      await user.save();
+      revalidatePath(`/community/${communityId}/mod-tools/moderators`);
+      return JSON.parse(JSON.stringify({ status: 200 }));
+    } catch (error) {
+      console.log(error);
+      return JSON.parse(JSON.stringify({ error, status: 500 }));
+    }
+  };
+  
+  export const removeModerator = async (communityId: string, userId: string) => {
+    try {
+      await connectToDatabase();
+      const community: ICommunity | null = await Community.findById(communityId);
+      if (!community) {
+        return JSON.parse(
+          JSON.stringify({ error: "Community not found", status: 500 })
+        );
+      }
+      community.moderators = community.moderators.filter(
+        (moderator) => moderator.toString() !== userId
+      );
+      await community.save();
+      revalidatePath("/community/" + communityId + "/mod-tools/moderators");
+      return JSON.parse(JSON.stringify({ status: 200 }));
+    } catch (error) {
+      console.log(error);
+      return JSON.parse(JSON.stringify({ error, status: 500 }));
+    }
+  };
 
 export const getModerators = async (communityId: string) => {
   try {
