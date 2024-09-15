@@ -1,106 +1,14 @@
-import { connectToDatabase } from "@/lib/database";
-import { Story } from "@/lib/database/models/story.model";
-import Tag from "@/lib/database/models/tag.model";
-import User from "@/lib/database/models/user.model";
-import mongoose from "mongoose";
+import { google } from '@ai-sdk/google';
+import { generateText } from 'ai';
 
-export async function GET(req: Request) {
+export async function POST(req: Request) {
     try {
-        await connectToDatabase();
-        let id = "";
-        // get all posts with this tag as included in it using mongodb aggregation
-        const data = await Tag.aggregate([
-            {
-                $match: {
-                    _id: new mongoose.Types.ObjectId(id),
-                },
-            },
-            {
-                $lookup: {
-                    from: "posts",
-                    localField: "posts",
-                    foreignField: "_id",
-                    as: "posts",
-                    pipeline: [
-                        {
-                            $lookup: {
-                                from: "communities",
-                                as: "community",
-                                localField: "community",
-                                foreignField: "_id",
-                                pipeline: [
-                                    {
-                                        $project: {
-                                            _id: 1,
-                                            name: 1,
-                                            icon: 1,
-                                        },
-                                    },
-                                ],
-                            },
-                        },
-                        {
-                            $addFields: {
-                                community: {
-                                    $arrayElemAt: ["$community", 0],
-                                },
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "users",
-                                localField: "author",
-                                foreignField: "_id",
-                                as: "author",
-                                pipeline: [
-                                    {
-                                        $project: {
-                                            _id: 1,
-                                            name: 1,
-                                            firstName: 1,
-                                            lastName: 1,
-                                            username: 1,
-                                            profilePicture: 1,
-                                        },
-                                    },
-                                ],
-                            },
-                        },
-                        {
-                            $addFields: {
-                                author: {
-                                    $arrayElemAt: ["$author", 0],
-                                },
-                            },
-                        },
-                        {
-                            $lookup: {
-                                from: "tags",
-                                as: "tags",
-                                localField: "tags",
-                                foreignField: "_id",
-                                pipeline: [
-                                    {
-                                        $project: {
-                                            _id: 1,
-                                            name: 1,
-                                        },
-                                    },
-                                ],
-                            },
-                        },
-                        {
-                            $skip: 3,
-                        },
-                        {
-                            $limit: 3,
-                        },
-                    ]
-                }
-            },
-        ]);
+
+        // const { text } = await generateText({
+        //     model: google('gemini-1.5-pro-latest'),
+        //     prompt: `Comments: ${comments} Type: ${tpyeOfComments} Post: ${post} Please summarize the comments based on the type of comments as if the comments are of type 1. criticism, 2. appreciation, 3. suggestion, 4. question for criticism type comments, the model should return a summarization of the comments in a way that it highlights the issue which is being criticized for appreciation type comments, the model should return a summarization of the comments in a way that it highlights the positive aspects of the post for suggestion type comments, the model should return a summarization of the comments in a way that it highlights the suggestions given by the users for question type comments, the model should return a summarization of the comments in a way that it highlights the questions asked by the users`,
+        // });
         return Response.json({
-            data
         });
     }
     catch (error: any) {

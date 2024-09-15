@@ -75,7 +75,10 @@ export default function TextBox({
             }),
             Node.create({
                 whitespace: "pre",
-            })
+            }),
+            // CodeBlockLowlight.configure({
+            //     lowlight,
+            // }),
         ],
         content: description,
         editorProps: {

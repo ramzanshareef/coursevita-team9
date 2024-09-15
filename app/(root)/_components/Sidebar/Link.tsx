@@ -87,7 +87,7 @@ const Links = ({ communitites }: {
                         Privacy · Advertising · Cookies
                     </span>
                     <span>
-                        Tech Talk {"©"} {new Date().getFullYear()}
+                        Course Vita {"©"} {new Date().getFullYear()}
                     </span>
                 </div>
             </div>
