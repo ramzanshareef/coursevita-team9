@@ -17,7 +17,12 @@ const commentSchema: Schema<IComment> = new Schema({
     replies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment', default: []}],
     upvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', default: []}],
     downvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', default: []}],
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    type: {
+        type: String,
+        enum: ['Criticism', 'Suggestion', 'Question', 'Appreciation'],
+        required: true
+    }
 });
 
 const Comment = models.Comment || mongoose.model<IComment>('Comment', commentSchema);
