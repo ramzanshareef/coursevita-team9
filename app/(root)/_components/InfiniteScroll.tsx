@@ -6,7 +6,7 @@ import { IFeedPost } from "@/types/posts";
 import { useEffect, useState, useTransition } from "react";
 import { Loader2Icon } from "lucide-react";
 import { useInView } from "react-intersection-observer";
-import { getAllPosts, getPopularPosts, getTrendingPosts } from "@/lib/actions/post.actions";
+import { getAllPosts, getPopularPosts, getTrendingPosts } from "@/lib/actions/post.action";
 import { usePathname } from "next/navigation";
 import { getTag } from "@/lib/actions/tag.actions";
 
@@ -117,7 +117,7 @@ const InfiniteScroll = ({
                 </div>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default InfiniteScroll;
+export default InfiniteScroll

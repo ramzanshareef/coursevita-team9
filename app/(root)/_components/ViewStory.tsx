@@ -8,7 +8,7 @@ import { IPopulatedStory } from "@/types/story";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import moment from "moment";
 import Link from "next/link";
-import { viewStory } from "@/lib/actions/story.action";
+import { viewStory } from "@/lib/actions/story.actions";
 
 export default function ViewStoryComp({ userStoriesData }: {
     userStoriesData: IPopulatedStory[];
@@ -159,5 +159,5 @@ export default function ViewStoryComp({ userStoriesData }: {
                 />
             </DialogContent>
         </Dialog>
-    </>;
+    </>
 }

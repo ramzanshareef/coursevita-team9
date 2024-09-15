@@ -11,4 +11,4 @@ export const imageRemove = async (imageKey: string) => {
     catch (error: any) {
         return { status: 500, message: error.message };
     }
-};
+}

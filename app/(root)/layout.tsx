@@ -7,7 +7,7 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const { userId } = auth();
+    const {userId} = auth();
     const currentUser = userId && await getUser(userId);
     const { data } = await getCommunitiesJoinedByUser(currentUser);
     return (

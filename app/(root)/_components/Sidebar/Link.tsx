@@ -92,7 +92,7 @@ const Links = ({ communitites }: {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Links;
+export default Links

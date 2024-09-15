@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ICommunity } from "@/lib/database/models/community.model";
-import Links from "./_components/Sidebar/Link";
+import Links from "./_components/SIdebar/Link";
 import { isAuth } from "@/lib/auth";
 import { currentUser } from "@clerk/nextjs/server";
 import { getFollowers, getFollowing, getTotalPosts } from "@/lib/actions/user.actions";
@@ -70,5 +70,5 @@ export default async function Sidebar({ isMobile = false, communitites }: {
             </div>}
             <Links communitites={communitites} />
         </div>
-    </>;
+    </>
 }

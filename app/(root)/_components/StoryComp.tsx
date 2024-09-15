@@ -385,5 +385,5 @@ export default function CreateStoryComp({ userStoriesData }: { userStoriesData: 
                 </DialogFooter>
             </DialogContent>
         </Dialog>}
-    </>;
+    </>
 }

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export interface IFeedPost {
+export interface IFeedPost{
     _id: mongoose.Schema.Types.ObjectId;
     author: {
         _id: mongoose.Schema.Types.ObjectId;

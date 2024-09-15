@@ -1,6 +1,6 @@
 "use server";
 
-import { currentUser } from "@clerk/nextjs/server";
+import { currentUser } from "@clerk/nextjs";
 import { isAuth } from "../auth";
 import Post, { IPost } from "../database/models/post.model";
 import Tag, { ITag } from "../database/models/tag.model";
@@ -229,7 +229,7 @@ export async function getAllPosts(options?: {
         await connectToDatabase();
         const communities = await Community.find();
         let needReviewPostIds: any = [];
-        communities.forEach((community: any) => {
+        communities.forEach((community) => {
             for (let i = 0; i < community.needsReview.length; i++) {
                 needReviewPostIds.push(community.needsReview[i]);
             }
@@ -484,7 +484,7 @@ export async function getPopularPosts(options?: {
         ]);
         const communities = await Community.find();
         let needReviewPostIds: any = [];
-        communities.forEach((community: any) => {
+        communities.forEach((community) => {
             for (let i = 0; i < community.needsReview.length; i++) {
                 needReviewPostIds.push(community.needsReview[i].toString());
             }
@@ -572,7 +572,7 @@ export const addComment = async (
                 },
                 recipients: recipients,
             })
-            .catch((error: any) => console.log(error));
+            .catch((error) => console.log(error));
         await post.save();
         revalidatePath(`/post/${postID.toString()}`);
         return JSON.parse(JSON.stringify({ status: 200, comment: newComment }));

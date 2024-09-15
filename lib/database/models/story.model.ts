@@ -1,5 +1,6 @@
 import mongoose, { Document } from "mongoose";
 
+
 export interface IStory extends Document {
     owner: mongoose.Schema.Types.ObjectId;
     imageUrl: string;

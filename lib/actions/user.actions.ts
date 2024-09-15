@@ -385,6 +385,33 @@ export const unfollowTag = async (tagId: string, userId: string) => {
     }
 };
 
+export const subscribeComments = async (
+    postId: string,
+    userId: string,
+    state: boolean
+) => {
+    try {
+        await connectToDatabase();
+        const user = await User.findById(userId);
+        if (!user) {
+            return JSON.parse(JSON.stringify({ status: 500 }));
+        }
+        const post = await Post.findById(postId);
+        if (!post) {
+            return JSON.parse(JSON.stringify({ status: 500 }));
+        }
+        if (state) {
+            post.notifyUsersOnComment.push(user._id);
+        } else {
+            post.notifyUsersOnComment.pull(user._id);
+        }
+        await post.save();
+        return JSON.parse(JSON.stringify({ status: 200 }));
+    } catch (error) {
+        return JSON.parse(JSON.stringify({ status: 500 }));
+    }
+};
+
 export const getTotalPosts = async (clerkId: string) => {
     try {
         await connectToDatabase();
@@ -458,30 +485,3 @@ export const updateUserDetails = async (clerkId: string, user: z.infer<typeof pr
         return JSON.parse(JSON.stringify({ status: 200 }));
     }
 }
-
-export const subscribeComments = async (
-    postId: string,
-    userId: string,
-    state: boolean
-) => {
-    try {
-        await connectToDatabase();
-        const user = await User.findById(userId);
-        if (!user) {
-            return JSON.parse(JSON.stringify({ status: 500 }));
-        }
-        const post = await Post.findById(postId);
-        if (!post) {
-            return JSON.parse(JSON.stringify({ status: 500 }));
-        }
-        if (state) {
-            post.notifyUsersOnComment.push(user._id);
-        } else {
-            post.notifyUsersOnComment.pull(user._id);
-        }
-        await post.save();
-        return JSON.parse(JSON.stringify({ status: 200 }));
-    } catch (error) {
-        return JSON.parse(JSON.stringify({ status: 500 }));
-    }
-};

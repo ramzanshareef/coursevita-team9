@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs";
 
 export async function isAuth() {
     const { userId } = auth();

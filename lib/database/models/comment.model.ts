@@ -1,4 +1,4 @@
-import mongoose, { Document, models, Schema } from "mongoose";
+import mongoose, { Document, models, Schema } from 'mongoose';
 
 export interface IComment extends Document {
     author: mongoose.Schema.Types.ObjectId;
@@ -11,14 +11,14 @@ export interface IComment extends Document {
 }
 
 const commentSchema: Schema<IComment> = new Schema({
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    post: { type: mongoose.Schema.Types.ObjectId, ref: "Post", required: false },
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    post: { type: mongoose.Schema.Types.ObjectId, ref: 'Post', required: false },
     content: { type: String, required: true },
-    replies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment", default: [] }],
-    upvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
-    downvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: "User", default: [] }],
+    replies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment', default: []}],
+    upvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', default: []}],
+    downvotes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', default: []}],
     createdAt: { type: Date, default: Date.now }
 });
 
-const Comment = models.Comment || mongoose.model<IComment>("Comment", commentSchema);
+const Comment = models.Comment || mongoose.model<IComment>('Comment', commentSchema);
 export default Comment;
