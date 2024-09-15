@@ -2,13 +2,13 @@ import { auth } from "@clerk/nextjs/server";
 import { Stories } from "./stories";
 import { CreatePost } from "./_components/CreatePost";
 import { getCommunitiesJoinedByUser, getUser } from "@/lib/actions/user.actions";
-import { getAllPosts, getPopularPosts, getTrendingPosts } from "@/lib/actions/post.action";
+import { getAllPosts, getPopularPosts, getTrendingPosts } from "@/lib/actions/post.actions";
 import { HomePageViewPostOrderBy } from "./_components/ClientComponents";
 import { SearchParamProps } from "@/types";
 import { IFeedPost } from "@/types/posts";
 import { Suspense } from "react";
 import Loading from "../loading";
-import InfiniteScroll from "./_components/InfiniteScroll";
+import InfiniteScroll from "./InfiniteScroll";
 
 export default async function HomePage({ searchParams }: SearchParamProps) {
     const { userId } = auth();
