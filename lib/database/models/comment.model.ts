@@ -8,6 +8,7 @@ export interface IComment extends Document {
     upvotes?: mongoose.Schema.Types.ObjectId[];
     downvotes?: mongoose.Schema.Types.ObjectId[];
     createdAt: Date;
+    type?: string;
 }
 
 const commentSchema: Schema<IComment> = new Schema({
