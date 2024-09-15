@@ -1,6 +1,6 @@
 "use server";
 
-import { currentUser } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { isAuth } from "../auth";
 import Post, { IPost } from "../database/models/post.model";
 import Tag, { ITag } from "../database/models/tag.model";
